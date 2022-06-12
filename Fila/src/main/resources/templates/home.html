@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ptBr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos</title>
+
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciador de contatos</h1>
+
+        <div class="content">
+            <div class="active-contact">
+                <h2>Contato atual</h2>
+
+                <span th:if="${contact != null}">
+                    <p>Nome: <span th:text="${contact.nome}"></span></p>
+                    <p>Número: <span th:text="${contact.numero}"></span></p>
+                </span>
+                <span th:if="${contact == null}">
+                    <p>Nenhum contato na fila.</p>
+                </span>
+                <a class="buttons" href="/proxContact">Próximo Contato</a>
+            </div>
+
+            <form action="#" th:action="@{/}" th:object="${newContact}" method="post" class="card-login">
+                <h2>Registro de contato</h2>
+                <div class="input-field">
+                    <label for="nome">Nome: </label>
+                    <input th:field="${newContact.nome}" type="text" name="nome" placeholder="Nome" id="nome">
+                </div>
+                <div class="input-field" style="margin-top: 12px;">
+                    <label for="numero">Número: </label>
+                    <input th:field="${newContact.numero}" type="text" name="numero" placeholder="Número" id="numero">
+                </div>
+                <button type="submit" class="buttons">Salvar Contato</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
